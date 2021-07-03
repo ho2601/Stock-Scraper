@@ -36,13 +36,12 @@ def csvExport(dict):
         with open(filename, "a", newline='') as file:
             write = csv.DictWriter(file, dict)
             write.writerow(dict)
-
     else:
         with open(filename, "w", newline='') as file:
             write = csv.DictWriter(file, dict)
             write.writeheader()
             write.writerow(dict)
-
+            
 for i in tickerList:
     x = stockData(i)
     print(x)
