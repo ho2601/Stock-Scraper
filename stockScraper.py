@@ -1,5 +1,5 @@
 """
-Small program using the python BeautifulSoup package in order to web scrape a website for stock price information, and export it 
+Small program using the Python BeautifulSoup package and the requests module in order to web scrape a website for stock price information, and export it 
 into a CSV file for further data interpretation. 
 """
 
