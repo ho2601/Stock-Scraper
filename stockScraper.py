@@ -18,15 +18,15 @@ def stockData(ticker):
 
     currentPrice = soup.find("span", {"class": "Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)"}).text
     spaceSplit = soup.find("div", {"D(ib) Mend(20px)"}).find_all('span')[1].text.find(" ")
-    percentChange = soup.find("div", {"D(ib) Mend(20px)"}).find_all('span')[1].text[:spaceSplit]
-    priceChange = soup.find("div", {"D(ib) Mend(20px)"}).find_all('span')[1].text[spaceSplit+2:-1]
+    priceChange = soup.find("div", {"D(ib) Mend(20px)"}).find_all('span')[1].text[:spaceSplit]
+    percentChange = soup.find("div", {"D(ib) Mend(20px)"}).find_all('span')[1].text[spaceSplit+2:-1]
 
     output = {
         "ticker": ticker.upper(),
         "date": time.strftime("%d/%m/%Y"),
         "currentPrice": float(currentPrice),
-        "percentChange": float(percentChange),
-        "priceChange": priceChange
+        "percentChange":percentChange,
+        "priceChange": float(priceChange)
     }
     return output
 
