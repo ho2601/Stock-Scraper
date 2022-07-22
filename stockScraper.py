@@ -16,16 +16,16 @@ def stockData(ticker):
     request = requests.get(stock)
     soup = BeautifulSoup(request.text, 'lxml')
 
-    currentPrice = soup.find("span", {"class": "Trsdu(0.3s) Fw(b) Fz(36px) Mb(-4px) D(ib)"}).text
+    currentPrice = soup.find("fin-streamer", {"class": "Fw(b) Fz(36px) Mb(-4px) D(ib)"}).text
     spaceSplit = soup.find("div", {"D(ib) Mend(20px)"}).find_all('span')[1].text.find(" ")
-    priceChange = soup.find("div", {"D(ib) Mend(20px)"}).find_all('span')[1].text[:spaceSplit]
-    percentChange = soup.find("div", {"D(ib) Mend(20px)"}).find_all('span')[1].text[spaceSplit+2:-1]
+    percentChange = soup.find("div", {"D(ib) Mend(20px)"}).find_all('span')[1].text[1:spaceSplit-1]
+    priceChange = soup.find("fin-streamer", {"Fw(500) Pstart(8px) Fz(24px)"}).find_all('span')[0].text
 
     output = {
         "ticker": ticker.upper(),
         "date": time.strftime("%d/%m/%Y"),
         "currentPrice": float(currentPrice),
-        "percentChange":percentChange,
+        "percentChange":str(float(percentChange)) + "%",
         "priceChange": float(priceChange)
     }
     return output
